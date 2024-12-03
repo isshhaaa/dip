@@ -1,0 +1,18 @@
+clc;
+close all;
+clear all;
+
+figure(1)
+I=imread("pout.tif");
+subplot(2,2,1);
+imshow(I);
+
+I1 = im2double(I);
+J=dct2(I1);
+subplot(2,2,2);
+imshow(J);
+
+J1=im2double(J);
+k=idct2(J1);
+subplot(2,2,3);
+imshow(k);
