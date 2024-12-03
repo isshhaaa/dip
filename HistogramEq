@@ -1,0 +1,46 @@
+clc;
+close all;
+clear all;
+
+figure(1)
+subplot(2,2,1);
+I= imread('/MATLAB Drive/low contarts img.jpg');
+J= histeq(I);
+imshow(I);
+title('Low contrast img');
+axis off;
+
+subplot(2,2,3);
+imhist(I,64);
+title('Hist of org img');
+
+subplot(2,2,2);
+imshow(J);
+title('Enchaned img');
+
+subplot(2,2,4);
+imhist(J,64);
+title('Hist of enhanced img');
+
+
+figure(3)
+subplot(2,2,1);
+I= imread('/MATLAB Drive/high contrast img.jpg');
+J= histeq(I);
+imshow(I);
+title('high contrast img');
+axis off;
+
+subplot(2,2,3);
+imhist(I,64);
+title('Hist of org img');
+
+subplot(2,2,2);
+imshow(J);
+title('deEnchaned img');
+
+subplot(2,2,4);
+imhist(J,64);
+title('Hist of deenhanced img');
+
+
