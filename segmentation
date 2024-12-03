@@ -1,0 +1,45 @@
+clc;
+close all;
+clear all;
+
+figure(1)
+img = imread('coins.png');
+subplot(2,2,1);
+imshow(img);
+title('org img');
+
+I=imhist(img);
+subplot(2,2,2);
+stem(I);
+title('hist img ');
+
+[row,col]=size(img);
+
+for i= 1:row
+    for j=1:col
+        if(img(i,j)>0 && img(i,j)<93)
+            red(i,j)=255;
+            green(i,j)=255;
+            blue(i,j)=0;
+        else if(img(i,j)>93 && img(i,j)<210)
+                red(i,j)=255;
+                green(i,j)=0;
+                blue(i,j)=255;
+        else if(img(i,j)>210 && img(i,j)<255)
+                 red(i,j)=0;
+                 green(i,j)=255;
+                 blue(i,j)=255;
+        end
+        end
+        end
+    end
+end
+
+subplot(2,2,3);
+img_contact = cat(3,red,green,blue);
+imshow(img_contact);
+title('threshold img');
+
+
+               
+
