@@ -1,0 +1,59 @@
+clc;
+close all;
+clear all;
+
+figure(1)
+I=imread("peppers.png");
+subplot(2,2,1);
+imshow(I);
+
+Ir=I(:,:,1);
+Ig=I(:,:,2);
+Ib=I(:,:,3);
+
+subplot(2,2,2);
+imshow(Ir);
+
+subplot(2,2,3);
+imshow(Ig);
+
+subplot(2,2,4);
+imshow(Ib);
+
+figure(2)
+Ir_bin = imbinarize(Ir);
+Ig_bin = imbinarize(Ig);
+Ib_bin = imbinarize(Ib);
+
+subplot(2,2,1);
+imshow(Ir_bin);
+subplot(2,2,2);
+imshow(Ig_bin);
+subplot(2,2,3);
+imshow(Ib_bin);
+
+figure(3)
+Add = imadd(Ir_bin , Ib_bin);
+subplot(2,2,1);
+imshow(Add);
+
+sub = imsubtract(Ir_bin , Ib_bin);
+subplot(2,2,2);
+imshow(sub);
+
+mul = immultiply(Ir_bin , Ib_bin);
+subplot(2,2,3);
+imshow(mul);
+
+div = imdivide(Ir_bin , Ib_bin);
+subplot(2,2,4);
+imshow(div);
+
+figure(4)
+rotate = imrotate(I,60);
+subplot(2,2,1);
+imshow(rotate);
+
+resize = imresize(I,0.5);
+subplot(2,2,2);
+imshow(resize);
