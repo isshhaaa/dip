@@ -1,0 +1,31 @@
+clc;
+close all;
+clear;
+%display the original image
+figure(1)
+A=imread("/MATLAB Drive/blackbuck.bmp");
+subplot(2,2,1);
+imshow(A);
+title("Original Image");
+%Add motion blur
+PSF=fspecial('motion',20,25);
+A2=im2double(A);
+motionblur=imfilter(A2, PSF, 'conv','circular');
+subplot(2,2,2);
+imshow(motionblur);
+title('Blurred Image');
+%restoring img
+restoredimage=deconvwnr(motionblur, PSF);
+subplot(2,2,3);
+imshow(restoredimage);
+title('Restored Image');
+%Evaluate performance parameters
+PSNR = psnr(restoredimage,A2);
+SSIM = ssim(restoredimage,A2);
+PSNR2 = psnr(motionblur,A2);
+disp('PSNR(Between original and restoredimage): ');
+disp(PSNR);
+disp('PSNR(Between original and blurred image): ');
+disp(PSNR2);
+disp('SSIM: ');
+disp(SSIM);
