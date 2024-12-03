@@ -1,0 +1,38 @@
+clc;
+close all;
+clear all;
+
+I=imread('eight.tif');
+
+subplot(2,3,1);
+imshow(I);
+title('Org img');
+
+J=imnoise(I,'salt & pepper');
+subplot(2,3,2);
+imshow(J);
+title('Noisy img');
+
+G=1/16 * [1,2,1;2,4,2;1,2,1];
+wout=imfilter(J,G);
+subplot(2,3,3);
+imshow(wout);
+title('gausian filtered');
+
+k=medfilt2(J);
+subplot(2,3,4);
+imshow(k);
+title('median filtered');
+
+pmask = fspecial('prewitt');
+pout = imfilter(I,pmask);
+subplot(2,3,5);
+imshow(pout);
+title('prewitt filtered');
+
+lmask = [1,1,1;1,-8,1;1,1,1];
+lout = imfilter(I,lmask);
+subplot(2,3,6);
+imshow(lout);
+title('laplacian filter');
+
